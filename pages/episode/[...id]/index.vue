@@ -4,17 +4,17 @@
 
 
 <script>
-import axios from 'axios';
+  import axios from 'axios';
 
 export default {
   name: 'EpisodePage',
   data() {
     return {
-      episodeData: null,
+      episodeData: null
     };
   },
   mounted() {
-    const episodeId = this.$route.params.id;
+    const episodeId = +this.$route.params.id;
     console.log(episodeId);
     axios.get(`https://rickandmortyapi.com/api/episode/${episodeId}`)
       .then(response => {
@@ -22,7 +22,6 @@ export default {
         console.log(this.episodeData);
       })
       .catch(error => {
-        console.error(error)
       });
   }
 };

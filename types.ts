@@ -19,8 +19,30 @@ export interface Location {
 }
 
 export interface Info {
-  count: string;
-  pages: string;
-  next: string;
-  prev: string;
+  count: number;
+  pages: number;
+  next:  string;
+  prev:  string;
+}
+
+export interface Episodes {
+  info:    EpisodesInfo;
+  results: Result[];
+}
+
+export interface EpisodesInfo {
+  count: number;
+  pages: number;
+  next:  string;
+  prev:  null;
+}
+
+export interface Result {
+  id:         number;
+  name:       string;
+  air_date:   string;
+  episode:    string;
+  characters: string[];
+  url:        string;
+  created:    Date;
 }
