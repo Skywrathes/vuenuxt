@@ -1,5 +1,6 @@
 <template>
-  <h1>Hello {{episodeId}}!</h1>
+  <h1>Hello +{{episodeId}}!</h1>
+  <h2>{{episodeData.name}}</h2>
 </template>
 
 

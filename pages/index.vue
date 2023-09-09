@@ -9,6 +9,7 @@
   <hr />
   <div class="flex gap-2">
     <input type="radio" id="alive" value="alive" 
+    class="w-6"
     v-model="selectedStatus" @change="characterStore.filterCharacters" />
     <label for="alive">Alive</label>
 
@@ -43,25 +44,20 @@ import { useCharacterStore } from '~/store/character';
 const characterStore = useCharacterStore();
 const { characters, info, selectedStatus, selectedName, page } = storeToRefs(characterStore);
 
-characterStore.getCharacters();
-onBeforeUpdate(()=> {
+characterStore.filterCharacters();
+onUpdated(()=> {
   characterStore.filterCharacters();
 })
-// setTimeout(()=> {
-//   characterStore.filterCharacters();
-// }, 0)
 </script>
 
 <style>
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+body {
+  background-color: rgb(45, 45, 45);
+  backdrop-filter: blur(20px), opacity(0.5);
 }
-
-.card {
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 8px;
+* {
+  font-family: monospace;
+  scroll-behavior: smooth;
+  color: aliceblue;
 }
 </style>

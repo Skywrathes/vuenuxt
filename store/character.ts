@@ -8,7 +8,7 @@ export const useCharacterStore = defineStore({
       characters: [] as Character[],
       info: {} as Info,
       selectedName: '',
-      selectedStatus: '',
+      selectedStatus: 'all',
       prevSelectedName: '',
       prevSelectedStatus: '',
       page: 1,
@@ -16,8 +16,6 @@ export const useCharacterStore = defineStore({
   },
   actions: {
     async setData(data: any) {
-      console.log(data);
-
       this.characters = data.data.results;
       this.info = data.data.info;
     },
