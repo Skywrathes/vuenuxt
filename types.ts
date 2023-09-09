@@ -21,28 +21,16 @@ export interface Location {
 export interface Info {
   count: number;
   pages: number;
-  next:  string;
-  prev:  string;
+  next: string;
+  prev: string;
 }
 
-export interface Episodes {
-  info:    EpisodesInfo;
-  results: Result[];
+export interface CharactersData {
+  info: Info;
+  results: Character[];
 }
 
-export interface EpisodesInfo {
-  count: number;
-  pages: number;
-  next:  string;
-  prev:  null;
-}
-
-export interface Result {
-  id:         number;
-  name:       string;
-  air_date:   string;
-  episode:    string;
-  characters: string[];
-  url:        string;
-  created:    Date;
+export interface CharactersAllData {
+  data: CharactersData;
+  config?: object;
 }

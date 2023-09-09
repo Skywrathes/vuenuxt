@@ -1,61 +1,112 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template class="bg-black">
-  <Header></Header>
-  <section class="flex flex-col items-center m-[4%]">
+  <Header />
+  <section class="flex flex-col items-center justify-center m-[4%]">
     <h1 class="text-[50px]">Characters</h1>
-    <form class="flex gap-8 m-8 flex-col lg:flex-row w-full justify-between" v-on:submit.prevent="characterStore.filterCharacters">
-      <input type="text" v-model="selectedName" class="border-blue-800 bg-gray-700 h-7 max-w-md rounded-md text-lg"
-        placeholder="Find character">
+    <form
+      class="flex gap-8 m-8 flex-col lg:flex-row w-full justify-between"
+      @submit.prevent="characterStore.filterCharacters"
+    >
+      <div class="max-w-md flex gap-5">
+        <input
+          v-model="selectedName"
+          type="text"
+          class="border-blue-800 bg-gray-700 h-7 rounded-md text-lg"
+          placeholder="Find character"
+        />
+        <p v-if="notFound" class="self-start text-red-600 text-lg">Not found</p>
+      </div>
       <div class="flex flex-col md:flex-row gap-4 text-lg">
         <div class="flex gap-5">
-          <input type="radio" id="alive" value="alive" class="w-5 checked:scale-150 transition-transform"
-            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <input
+            id="alive"
+            v-model="selectedStatus"
+            type="radio"
+            value="alive"
+            class="w-5 checked:scale-150 transition-transform"
+            @change="characterStore.filterCharacters"
+          />
           <label for="alive">Alive</label>
         </div>
 
         <div class="flex gap-5">
-          <input type="radio" id="dead" value="dead" class="w-5 checked:scale-150 transition-transform"
-            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <input
+            id="dead"
+            v-model="selectedStatus"
+            type="radio"
+            value="dead"
+            class="w-5 checked:scale-150 transition-transform"
+            @change="characterStore.filterCharacters"
+          />
           <label for="dead">Dead</label>
         </div>
 
         <div class="flex gap-5">
-          <input type="radio" id="unknown" value="unknown" class="w-5 checked:scale-150 transition-transform"
-            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <input
+            id="unknown"
+            v-model="selectedStatus"
+            type="radio"
+            value="unknown"
+            class="w-5 checked:scale-150 transition-transform"
+            @change="characterStore.filterCharacters"
+          />
           <label for="unknown">Unknown</label>
         </div>
 
-
         <div class="flex gap-5">
-          <input type="radio" id="all" value="all" class="w-5 checked:scale-150 transition-transform"
-            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <input
+            id="all"
+            v-model="selectedStatus"
+            type="radio"
+            value="all"
+            class="w-5 checked:scale-150 transition-transform"
+            @change="characterStore.filterCharacters"
+          />
           <label for="all">All</label>
         </div>
       </div>
-      <!-- <button type="submit">Filter</button> -->
     </form>
 
     <nav class="flex justify-center gap-7 mb-5">
-      <button class="text-xl font-bold" @click="characterStore.prevPage">Previous Page</button>
+      <button
+        class="text-xl font-bold hover:text-purple-400 transition-colors"
+        @click="characterStore.prevPage"
+      >
+        Previous Page
+      </button>
       <p class="text-xl">{{ page }}/{{ info.pages }}</p>
-      <button class="text-xl font-bold" @click="characterStore.nextPage">Next Page</button>
+      <button
+        class="text-xl font-bold hover:text-purple-400 transition-colors"
+        @click="characterStore.nextPage"
+      >
+        Next Page
+      </button>
     </nav>
 
-    <div class="grid w-full gap-5 flex-col items-center md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    <div
+      class="grid w-full gap-5 flex-col items-center md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+    >
       <Card />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { useCharacterStore } from '~/store/character';
+import { storeToRefs } from "pinia";
+import { useCharacterStore } from "~/store/character";
 const characterStore = useCharacterStore();
-const { characters, info, selectedStatus, selectedName, page } = storeToRefs(characterStore);
+const { info, selectedStatus, selectedName, page, notFound } =
+  storeToRefs(characterStore);
 
-characterStore.filterCharacters();
+// eslint-disable-next-line no-undef
+onMounted(() => {
+  characterStore.filterCharacters();
+});
+
+// eslint-disable-next-line no-undef
 onUpdated(() => {
   characterStore.filterCharacters();
-})
+});
 </script>
 
 <style>

@@ -12,6 +12,7 @@ node_modules
 # Logs
 logs
 *.log
+npm-debug.log*
 
 # Misc
 .DS_Store
@@ -22,3 +23,11 @@ logs
 .env
 .env.*
 !.env.example
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.DS_Store
+.idea
+.vscode
