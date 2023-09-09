@@ -1,41 +1,49 @@
 <template class="bg-black">
-  <h1>Lines {{ info.count }}</h1>
-  <h1>Pages {{ info.pages }}</h1>
-  <form v-on:submit.prevent="characterStore.filterCharacters">
-    <input type="text" v-model="selectedName"
-    class="border-black border-2 rounded-md" placeholder="Find character">
-    <button type="submit">Filter</button>
-  </form>
-  <hr />
-  <div class="flex gap-2">
-    <input type="radio" id="alive" value="alive" 
-    class="w-6"
-    v-model="selectedStatus" @change="characterStore.filterCharacters" />
-    <label for="alive">Alive</label>
+  <Header></Header>
+  <section class="flex flex-col items-center m-[4%]">
+    <h1 class="text-[50px]">Characters</h1>
+    <form class="flex gap-8 m-8 flex-col lg:flex-row w-full justify-between" v-on:submit.prevent="characterStore.filterCharacters">
+      <input type="text" v-model="selectedName" class="border-blue-800 bg-gray-700 h-7 max-w-md rounded-md text-lg"
+        placeholder="Find character">
+      <div class="flex flex-col md:flex-row gap-4 text-lg">
+        <div class="flex gap-5">
+          <input type="radio" id="alive" value="alive" class="w-5 checked:scale-150 transition-transform"
+            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <label for="alive">Alive</label>
+        </div>
 
-    <input type="radio" id="dead" value="dead" 
-    v-model="selectedStatus" @change="characterStore.filterCharacters" />
-    <label for="dead">Dead</label>
+        <div class="flex gap-5">
+          <input type="radio" id="dead" value="dead" class="w-5 checked:scale-150 transition-transform"
+            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <label for="dead">Dead</label>
+        </div>
 
-    <input type="radio" id="unknown" value="unknown" 
-    v-model="selectedStatus" @change="characterStore.filterCharacters" />
-    <label for="unknown">Unknown</label>
+        <div class="flex gap-5">
+          <input type="radio" id="unknown" value="unknown" class="w-5 checked:scale-150 transition-transform"
+            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <label for="unknown">Unknown</label>
+        </div>
 
-    <input type="radio" id="all" value="all"
-    v-model="selectedStatus" @change="characterStore.filterCharacters" />
-    <label for="all">All</label>
-  </div>
-  <hr/>
 
-  <nav class="flex justify-center gap-7">
-    <button class="text-xl font-bold" @click="characterStore.prevPage">Previous Page</button>
-    <p class="text-xl">{{ page }}/{{ info.pages }}</p>
-    <button class="text-xl font-bold" @click="characterStore.nextPage">Next Page</button>
-  </nav>
+        <div class="flex gap-5">
+          <input type="radio" id="all" value="all" class="w-5 checked:scale-150 transition-transform"
+            v-model="selectedStatus" @change="characterStore.filterCharacters" />
+          <label for="all">All</label>
+        </div>
+      </div>
+      <!-- <button type="submit">Filter</button> -->
+    </form>
 
-  <div class="grid gap-5 flex-col items-center xl:grid-cols-2 2xl:grid-cols-3 m-[3%]">
-    <Card/>
-  </div>
+    <nav class="flex justify-center gap-7 mb-5">
+      <button class="text-xl font-bold" @click="characterStore.prevPage">Previous Page</button>
+      <p class="text-xl">{{ page }}/{{ info.pages }}</p>
+      <button class="text-xl font-bold" @click="characterStore.nextPage">Next Page</button>
+    </nav>
+
+    <div class="grid w-full gap-5 flex-col items-center md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <Card />
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -45,7 +53,7 @@ const characterStore = useCharacterStore();
 const { characters, info, selectedStatus, selectedName, page } = storeToRefs(characterStore);
 
 characterStore.filterCharacters();
-onUpdated(()=> {
+onUpdated(() => {
   characterStore.filterCharacters();
 })
 </script>
@@ -53,8 +61,8 @@ onUpdated(()=> {
 <style>
 body {
   background-color: rgb(45, 45, 45);
-  backdrop-filter: blur(20px), opacity(0.5);
 }
+
 * {
   font-family: monospace;
   scroll-behavior: smooth;
