@@ -1,7 +1,7 @@
 <template>
   <Header></Header>
   <section class="flex flex-col items-center m-[4%]">
-    <h1 class="leading-none mb-10 text-lg md:text-[35px] lg:text-[55px]">
+    <h1 class="leading-none text-center mb-10 text-lg md:text-[35px] lg:text-[55px]">
       {{ episodeData.name }}
     </h1>
     <p class="mb-10 text-lg md:text-[25px] lg:text-[35px]">

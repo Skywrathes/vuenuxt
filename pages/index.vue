@@ -69,14 +69,14 @@
 
     <nav class="flex justify-center gap-7 mb-5">
       <button
-        class="text-xl font-bold hover:text-purple-400 transition-colors"
+        class="text-lg lg:text-xl font-bold min-w-[130px] lg:min-w-[150px] hover:text-purple-400 transition-colors"
         @click="characterStore.prevPage"
       >
         Previous Page
       </button>
       <p class="text-xl">{{ page }}/{{ info.pages }}</p>
       <button
-        class="text-xl font-bold hover:text-purple-400 transition-colors"
+        class="text-lg lg:text-xl min-w-[130px] lg:min-w-[150px] font-bold hover:text-purple-400 transition-colors"
         @click="characterStore.nextPage"
       >
         Next Page
@@ -91,7 +91,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { storeToRefs } from "pinia";
 import { useCharacterStore } from "~/store/character";
 const characterStore = useCharacterStore();
