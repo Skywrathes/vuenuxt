@@ -71,6 +71,7 @@
       <button
         class="text-lg lg:text-xl font-bold min-w-[130px] lg:min-w-[150px] hover:text-purple-400 transition-colors"
         @click="characterStore.prevPage"
+        :disabled="isLoading || page === 1"
       >
         Previous Page
       </button>
@@ -78,6 +79,7 @@
       <button
         class="text-lg lg:text-xl min-w-[130px] lg:min-w-[150px] font-bold hover:text-purple-400 transition-colors"
         @click="characterStore.nextPage"
+        :disabled="isLoading || page === info.pages"
       >
         Next Page
       </button>
@@ -95,7 +97,7 @@
 import { storeToRefs } from "pinia";
 import { useCharacterStore } from "~/store/character";
 const characterStore = useCharacterStore();
-const { info, selectedStatus, selectedName, page, notFound } =
+const { info, selectedStatus, selectedName, page, notFound, isLoading } =
   storeToRefs(characterStore);
 
 // eslint-disable-next-line no-undef

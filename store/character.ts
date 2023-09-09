@@ -13,6 +13,7 @@ export const useCharacterStore = defineStore({
       prevSelectedStatus: "",
       page: 1,
       notFound: false,
+      isLoading: false,
     };
   },
   actions: {
@@ -39,6 +40,7 @@ export const useCharacterStore = defineStore({
       if (this.page < this.info.pages) {
         const nextPageUrl = this.info.next;
         try {
+          this.isLoading = true;
           const response = await axios.get(nextPageUrl);
           const data = response.data;
           this.page++;
@@ -46,6 +48,8 @@ export const useCharacterStore = defineStore({
           this.info = data.info;
         } catch (error) {
           console.error(error);
+        } finally {
+          this.isLoading = false;
         }
       }
     },
@@ -53,6 +57,7 @@ export const useCharacterStore = defineStore({
       if (this.page > 1) {
         const prevPageUrl = this.info.prev;
         try {
+          this.isLoading = true;
           const response = await axios.get(prevPageUrl);
           const data = response.data;
           this.page--;
@@ -60,6 +65,8 @@ export const useCharacterStore = defineStore({
           this.info = data.info;
         } catch (error) {
           console.error(error);
+        } finally {
+          this.isLoading = false;
         }
       }
     },
