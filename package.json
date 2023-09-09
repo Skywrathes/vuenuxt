@@ -7,7 +7,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -19,6 +20,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-vue": "^9.17.0",
+    "gh-pages": "^6.0.0",
     "nuxt": "^3.7.1",
     "postcss": "^8.4.29",
     "prettier": "^2.5.1",

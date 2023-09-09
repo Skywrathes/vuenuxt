@@ -1,63 +1,65 @@
-# Nuxt 3 Minimal Starter
+# Тестовое задание по Vue.js (Junior Frontend разработчик) 
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Этот проект является реализацией простого SPA приложения на Nuxt 3 с использованием REST API, Pinia, и Axios.
+Информация берется из API <https://rickandmortyapi.com/>.
 
-## Setup
+Сервис доступен по ссылке: <https://skywrathes.github.io/vuenuxt/>
 
-Make sure to install the dependencies:
+## Установка и запуск проекта 
 
-```bash
-# npm
+Клонируйте репозиторий с помощью команды: 
+
+```sh
+git clone https://github.com/Skywrathes/vuenuxt
+```
+
+Перейдите в директорию проекта: 
+
+```sh
+cd vuenuxt/
+```
+
+Установите зависимости: 
+
+```sh
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
 ```
 
-## Development Server
+Запустите проект: 
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
+```sh
+npx nuxt dev
 ```
 
-## Production
+Откройте приложение в браузере по адресу <http://localhost:3000>.
 
-Build the application for production:
+## Функциональность приложения
 
-```bash
-# npm
-npm run build
+#### Главная страница (index.vue) 
 
-# pnpm
-pnpm run build
+- Постраничный вывод списка персонажей.
 
-# yarn
-yarn build
-```
+Каждая запись содержит:
 
-Locally preview production build:
+- Имя персонажа, кликабельное и ведущее на страницу персонажа.
+- Разновидность (Human, Alien или другое значение).
+- Картинку персонажа.
+- Список эпизодов, в которых персонаж участвовал (первые пять записей), кликабельные.
 
-```bash
-# npm
-npm run preview
+Имеется поле поиска по имени и фильтр по статусу (живой, мертвый, неизвестно), которые работают вместе.
 
-# pnpm
-pnpm run preview
+#### Страница персонажа (character.vue) 
 
-# yarn
-yarn preview
-```
+- Отображение карточки с информацией о персонаже. 
+- Имя персонажа. 
+- Разновидность. 
+- Картинка персонажа. 
+- Локация персонажа. 
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+#### Страница эпизода (episode.vue) 
+
+- Отображение карточки с информацией об эпизоде. 
+- Название эпизода. 
+- Дата премьеры. 
+- Картинки всех персонажей, участвующих в эпизоде. 
+- Картинки персонажей кликабельны и ведут на страницу персонажа.
