@@ -34,13 +34,14 @@ export const useCharacterStore = defineStore({
       this.characters = data.results;
       this.info = data.info;
     },
+
     async nextPage() {
       if (this.page < this.info.pages) {
-        this.page++;
         const nextPageUrl = this.info.next;
         try {
           const response = await axios.get(nextPageUrl);
           const data = response.data;
+          this.page++;
           this.characters = data.results;
           this.info = data.info;
         } catch (error) {
@@ -50,11 +51,11 @@ export const useCharacterStore = defineStore({
     },
     async prevPage() {
       if (this.page > 1) {
-        this.page--;
         const prevPageUrl = this.info.prev;
         try {
           const response = await axios.get(prevPageUrl);
           const data = response.data;
+          this.page--;
           this.characters = data.results;
           this.info = data.info;
         } catch (error) {
